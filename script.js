@@ -8,45 +8,30 @@ document.addEventListener('DOMContentLoaded', () => {
     const getAdvice = () => {
         newAdviceBtn.disabled = true;
         newAdviceBtn.classList.add('loading');
-        //asincrónica
-        fetch(ADVICE_API_URL)
+
+        fetch(ADVICE_API_URL, { cache: 'no-cache' })
             .then(response => {
                 if (!response.ok) {
-                    throw new Error('No se pudo obtener el consejo.');
+                    throw new Error('Could not fetch advice from the API.');
                 }
                 return response.json();
             })
             .then(data => {
-                const englishAdvice = data.slip.advice;
-                const adviceId = data.slip.id;
-                //api de traducción
-                adviceIdElement.textContent = `Consejo #${adviceId}`;
-                const TRANSLATE_API_URL = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(englishAdvice)}&langpair=en|es`;
-
-                return fetch(TRANSLATE_API_URL);
-            })
-            .then(translateResponse => {
-                if (!translateResponse.ok) {
-                    throw new Error('No se pudo traducir el consejo.');
-                }
-                return translateResponse.json();
-            })
-            .then(translateData => {
-                const spanishAdvice = translateData.responseData.translatedText;
-                adviceTextElement.textContent = `"${spanishAdvice}"`;
+                const { id, advice } = data.slip;
+                adviceIdElement.textContent = `Advice #${id}`;
+                adviceTextElement.textContent = `"${advice}"`;
             })
             .catch(error => {
-                adviceTextElement.textContent = `"${error.message}"`;
+                adviceTextElement.textContent = `"It seems something went wrong. Please try again."`;
                 adviceIdElement.textContent = 'Error';
-                console.error("Falló la operación: ", error);
+                console.error("Operation failed: ", error);
             })
             .finally(() => {
-
                 newAdviceBtn.disabled = false;
                 newAdviceBtn.classList.remove('loading');
             });
     };
+
     newAdviceBtn.addEventListener('click', getAdvice);
     getAdvice();
 });
-
