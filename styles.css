@@ -1,0 +1,86 @@
+:root {
+    --clr-primary: hsl(150, 100%, 66%);
+    --clr-secondary: hsl(193, 38%, 86%);
+    --clr-dark: hsl(219, 17%, 26%);
+    --clr-darkest: hsl(218, 23%, 16%);
+}
+
+body {
+    font-family: 'Manrope', sans-serif;
+    background-color: var(--clr-darkest);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+.card {
+    background-color: var(--clr-dark);
+    border-radius: 15px;
+    padding: 40px;
+    max-width: 500px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.title {
+    color: var(--clr-primary);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin-bottom: 20px;
+}
+
+.advice-text {
+    color: var(--clr-secondary);
+    font-size: 28px;
+    font-weight: 800;
+    margin-bottom: 30px;
+}
+
+.divider {
+    height: 16px;
+    width: 100%;
+    background-image: url('data:image/svg+xml;utf8,<svg width="444" height="16" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><path fill="%234F5D74" d="M0 8h196v1H0zM248 8h196v1H248z"/><g transform="translate(212)" fill="%23CEE3E9"><rect width="6" height="16" rx="3"/><rect x="14" width="6" height="16" rx="3"/></g></g></svg>');
+    background-repeat: no-repeat;
+    background-position: center;
+    margin-bottom: 30px;
+}
+
+.new-advice-btn {
+    background-color: var(--clr-primary);
+    border: none;
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: box-shadow 0.3s ease;
+}
+
+.new-advice-btn:hover {
+    box-shadow: 0 0 25px var(--clr-primary);
+}
+
+.new-advice-btn.loading {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from {
+        transform: translateX(-50%) rotate(0deg);
+    }
+
+    to {
+        transform: translateX(-50%) rotate(360deg);
+    }
+}
