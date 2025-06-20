@@ -15,10 +15,12 @@ irlos al español en tiempo real. Es una demostración práctica del manejo de s
 🧩 Estructura de Archivos
 
 generador-de-consejos/
+```
 ├── index.html         # La estructura de la página
 ├── style.css          # Los estilos visuales y la animación de carga
 ├── script.js          # Toda la lógica de la aplicación
 └── README.md          # La documentación que estás leyendo
+```
 
 🛠️ Cómo Usar
 Simplemente clona este repositorio o descarga los archivos y abre index.html en tu navegador web. No se requiere ningún paso de compilación o instalación.
